@@ -1,6 +1,6 @@
 <?php
-    if(isset($_REQUEST['entrar'])){
-        header('Location: codigoPHP/login.php');
+    if(isset($_REQUEST['volver'])){
+        header('Location: programa.php');
         exit;
     }
 ?>
@@ -12,24 +12,23 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Login Logoff Tema 5</title>
-        <link rel="stylesheet" href="webroot/css/estilos.css">
+        <title></title>
+        <link rel="stylesheet" href="../webroot/css/estilos.css"/>
     </head>
     <body>
         <header>
-            <h2>LOGIN LOGOFF TEMA 5</h2>
-            <h2 id="inicioPublico">INICIO PÚBLICO</h2>
+            <h1>LOGIN LOGOFF TEMA 5</h1>
+            <h2>DETALLE</h2>
             <form>
-                <input type="submit" name="entrar" value="Entrar"/>
+                <input type="submit" name="volver" value="Volver"/>
             </form>
         </header>
         <main>
-            
         </main>
         <footer>
             <a href="https://alejandrohuefer.ieslossauces.es/">Alejandro De la Huerga Fernández</a>
             <a href="https://github.com/alejandrohuerga/AHFDWESLoginLogoffTema5.git">
-                <img src="doc/images/github-logo.png"> 
+                <img src="../doc/images/github-logo.png"> 
             </a>
         </footer>
     </body>

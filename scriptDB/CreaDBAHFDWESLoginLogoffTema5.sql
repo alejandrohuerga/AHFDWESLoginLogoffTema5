@@ -12,7 +12,7 @@ CREATE DATABASE IF NOT EXISTS DBAHFDWESLoginLogoffTema5;
 USE DBAHFDWESLoginLogoffTema5;
 
 CREATE TABLE IF NOT EXISTS T_01Usuario (
-    T01_CodUsuario VARCHAR(8) PRIMARY KEY,
+    T01_CodUsuario VARCHAR(25) PRIMARY KEY,
     -- CodUsuario:8 letras maximo y 4 ninimo PK
     T01_Password VARCHAR(255) NOT NULL ,
     -- Password:8 letras maximo y 4 ninimo. Obligatorio

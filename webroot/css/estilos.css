@@ -15,10 +15,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 header{
     width: 100%;
     height: 15vh;
+    padding-left: 50px;
+    padding-right: 50px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     background: lightblue;
 }
 
