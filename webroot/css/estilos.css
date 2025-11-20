@@ -55,7 +55,6 @@ main{
 
 
 #divLogin{
-    
     width: 30%;
     height: 70%;
     display: flex;
@@ -73,7 +72,9 @@ main{
     
 }
 
-#divLogin input{
+
+
+#formularioLogin input{
     height: 32px;
     font-family: Play,sans-serif;
     font-size: 14px;
@@ -86,14 +87,66 @@ main{
     border-radius: 4px;
 }
 
-#divLogin input:hover{
+#formularioLogin input:hover{
     background-color: rgb(80,80,80);
 }
 
-#divLogin input[name="registrarse"]{
+#botonesLogin{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    justify-content: center;
+    height: 150px;
+}
+
+#o{
+    width: 344px;
+    text-align: center;
+    border-top: 1px solid white;
+    margin-left: 17%;
+}
+
+#entrarCancelar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+#formularioLogin input[name="entrar"]{
     background-color: rgb(255, 108, 32);
+    width: 45%;
+    margin-right: 10px;
+}
+
+#formularioLogin input[name="cancelar"]{
+    width: 45%;
+}
+
+#sincuenta{
+    font-weight: normal;
+    margin-top: 13px;
+    margin-left:40%;
+    font-size: 0.8rem;
+}
+
+#formularioLogin input[name="registrarse"]{
+    margin-top: 20px;
+    background-color: rgb(18, 18, 18);
 
 }
+
+#entradasLogin{
+    padding: 20px;
+}
+
+#entradasLogin input{
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 4px;
+    height: 45px;
+}
+
 
 input[name="cerrarSesion"]{
     height: 32px;

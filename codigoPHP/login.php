@@ -5,6 +5,11 @@
      * @since 20/11/2025
      */
 
+    require_once '../conf/confBDPDOCasa.php';
+    
+    $entradaOK=true;
+    
+
     if(isset($_REQUEST['entrar'])){
         header('Location: programa.php');
         exit;
@@ -43,11 +48,25 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
         <main id="mainLogin">
             <div id="divLogin">
                 <h1>Iniciar Sesión</h1>
-                <form>
-                    <input type="submit" name="entrar" value="INICIAR SESIÓN"/>
-                    <input type="submit" name="cancelar" value="CANCELAR"/>
-                    <input type="submit" name="registrarse" value="CREAR CUENTA"/>
-                </form>
+                <div id="formularioLogin">
+                    <form name="formularioLogin" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" >
+                        <div id="entradasLogin">
+                            <label for="usuario">Usuario</label>
+                            <input type="text" name="usuario" class="entradaDatos" placeholder="Nombre de usuario"/>
+                            <label for="password">Contraseña</label>
+                            <input type="text" name="password" class="entradaDatos" placeholder="Contraseña"/>
+                        </div>
+                        <div id="botonesLogin">
+                            <div id="entrarCancelar">
+                                <input type="submit" name="entrar" value="INICIAR SESIÓN"/>
+                                <input type="submit" name="cancelar" value="CANCELAR"/>
+                            </div>
+                            <div id="o">O</div>
+                            <p id="sincuenta">¿No tienes cuenta?</p>
+                            <input type="submit" name="registrarse" value="CREAR CUENTA"/> 
+                        </div>
+                    </form>
+                </div>
             </div>
         </main>
         <footer>
