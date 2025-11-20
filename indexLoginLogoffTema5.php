@@ -1,5 +1,5 @@
 <?php
-    if(isset($_REQUEST['entrar'])){
+    if(isset($_REQUEST['iniciarSesion'])){
         header('Location: codigoPHP/login.php');
         exit;
     }
@@ -14,22 +14,27 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
         <meta charset="UTF-8">
         <title>Login Logoff Tema 5</title>
         <link rel="stylesheet" href="webroot/css/estilos.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Play:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     </head>
     <body>
         <header>
-            <h2>LOGIN LOGOFF TEMA 5</h2>
+            <p>LOGIN LOGOFF TEMA 5</p>
             <h2 id="inicioPublico">INICIO PÚBLICO</h2>
             <form>
-                <input type="submit" name="entrar" value="Entrar"/>
+                <input type="submit" name="iniciarSesion" value="INICIAR SESIÓN"/>
             </form>
         </header>
         <main>
-            
+            <h4 id="h4InicioPublico">!Bienvenido al inicio público¡</h4>
+            <p id="pInicioPublico">Desde esta página puedes iniciar sesión arriba a la derecha.</p>
         </main>
         <footer>
-            <a href="https://alejandrohuefer.ieslossauces.es/">Alejandro De la Huerga Fernández</a>
+            <p class="nombre"><a href="https://alejandrohuefer.ieslossauces.es/">Alejandro De la Huerga Fernández</a><p>
+            <p class="webImitada"><a href="https://www.faceit.com/es">Página Web imitada</a><p>
             <a href="https://github.com/alejandrohuerga/AHFDWESLoginLogoffTema5.git">
-                <img src="doc/images/github-logo.png"> 
+                <img src="doc/images/icone-github-grise.png"> 
             </a>
         </footer>
     </body>

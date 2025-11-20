@@ -1,4 +1,10 @@
 <?php
+    /*
+     * @author Alejandro De la Huerga
+     * @version V 1.0.0
+     * @since 20/11/2025
+     */
+
     if(isset($_REQUEST['entrar'])){
         header('Location: programa.php');
         exit;
@@ -9,10 +15,11 @@
         exit;
     }
     
-    if(isset($_REQUEST['registrase'])){
+    if(isset($_REQUEST['registrarse'])){
         header('Location: vRegistro.php');
         exit;
     }
+    
 ?>
 <!DOCTYPE html>
 <!--
@@ -24,25 +31,30 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
         <meta charset="UTF-8">
         <title></title>
         <link rel="stylesheet" href="../webroot/css/estilos.css"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Play:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     </head>
     <body>
         <header>
-            <h1>LOGIN LOGOFF TEMA 5</h1>
-            <h2>LOGIN</h2>
-            <form>
-                <input type="submit" name="entrar" value="Login"/>
-            </form>
+            <p>LOGIN LOGOFF TEMA 5</p>
+            <h2 id="login">LOGIN</h2>
         </header>
-        <main>
-            <form>
-                <input type="submit" name="cancelar" value="Cancelar"/>
-                <input type="submit" name="registrase" value="registrase"/>
-            </form>
+        <main id="mainLogin">
+            <div id="divLogin">
+                <h1>Iniciar Sesión</h1>
+                <form>
+                    <input type="submit" name="entrar" value="INICIAR SESIÓN"/>
+                    <input type="submit" name="cancelar" value="CANCELAR"/>
+                    <input type="submit" name="registrarse" value="CREAR CUENTA"/>
+                </form>
+            </div>
         </main>
         <footer>
-            <a href="https://alejandrohuefer.ieslossauces.es/">Alejandro De la Huerga Fernández</a>
+            <p class="nombre"><a href="https://alejandrohuefer.ieslossauces.es/">Alejandro De la Huerga Fernández</a><p>
+            <p class="webImitada"><a href="https://www.faceit.com/es">Página Web imitada</a><p>
             <a href="https://github.com/alejandrohuerga/AHFDWESLoginLogoffTema5.git">
-                <img src="../doc/images/github-logo.png"> 
+                <img src="../doc/images/icone-github-grise.png"> 
             </a>
         </footer>
     </body>
