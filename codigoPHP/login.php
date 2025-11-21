@@ -5,16 +5,12 @@
      * @since 20/11/2025
      */
 
-    require_once '../conf/confBDPDOCasa.php';
-    
-    $entradaOK=true;
-    
-
+    /*
     if(isset($_REQUEST['entrar'])){
         header('Location: programa.php');
         exit;
     }
-    
+    */
     if(isset($_REQUEST['cancelar'])){
         header('Location: ../indexLoginLogoffTema5.php');
         exit;
@@ -24,8 +20,53 @@
         header('Location: vRegistro.php');
         exit;
     }
+
+
+    require_once '../conf/confDBPDOClase.php'; // Archivo de 
+    require_once '../core/231018libreriaValidacion.php'; // Libreria de validación de formularios.
     
+    $entradaOK=true;
+    
+    // Array que almacena los errores del formulario.
+    
+    $aErrores=[
+        'usuario'=>null,
+        'password'=>null
+    ];
+    
+    // Array que almacena las respuestas correctas del formulario.
+    
+    $aRespuestas=[
+        'usuario'=>null,
+        'password'=>null
+    ];
+    
+    //Para cada campo del formulario: Validar entrada y actuar en consecuencia
+    if (isset($_REQUEST["entrar"])) {//Código que se ejecuta cuando se envía el formulario
+
+        // Validamos los datos del formulario
+        $aErrores['usuario']= validacionFormularios::comprobarAlfabetico($_REQUEST['usuario'],100,0,1,);
+        $aErrores['password'] = validacionFormularios::comprobarAlfabetico($_REQUEST['password'], 255, 1, 1);
+        
+        foreach($aErrores as $campo => $valor){
+            if(!empty($valor)){ // Comprobar si el valor es válido
+                $entradaOK = false;
+            } 
+        }
+        
+    } else {//Código que se ejecuta antes de rellenar el formulario
+        $entradaOK = false;
+    }
+    
+    if($entradaOK){
+        if(isset($_REQUEST['entrar'])){
+            header('Location: programa.php');
+            exit;
+        }
+    }else{
+      
 ?>
+<!<!-- comment -->
 <!DOCTYPE html>
 <!--
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -53,8 +94,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
                         <div id="entradasLogin">
                             <label for="usuario">Usuario</label>
                             <input type="text" name="usuario" class="entradaDatos" placeholder="Nombre de usuario"/>
+                            <span class="error" id="erroresFormulario"><?php echo $aErrores['usuario']??'' ?></span>
+                            <br>
                             <label for="password">Contraseña</label>
-                            <input type="text" name="password" class="entradaDatos" placeholder="Contraseña"/>
+                            <input type="password" name="password" class="entradaDatos" placeholder="Contraseña"/>
+                            <span class="error" id="erroresFormulario"><?php echo $aErrores['password']??'' ?></span>
                         </div>
                         <div id="botonesLogin">
                             <div id="entrarCancelar">
@@ -69,6 +113,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
                 </div>
             </div>
         </main>
+        <?php
+        }
+        ?>
         <footer>
             <p class="nombre"><a href="https://alejandrohuefer.ieslossauces.es/">Alejandro De la Huerga Fernández</a><p>
             <p class="webImitada"><a href="https://www.faceit.com/es">Página Web imitada</a><p>
@@ -78,3 +125,4 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
         </footer>
     </body>
 </html>
+
