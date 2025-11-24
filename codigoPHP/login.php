@@ -1,46 +1,23 @@
 <?php
-    /*
-     * @author Alejandro De la Huerga
-     * @version V 1.0.0
-     * @since 20/11/2025
-     */
 
-    /*
-    if(isset($_REQUEST['entrar'])){
-        header('Location: programa.php');
-        exit;
-    }
-    */
     if(isset($_REQUEST['cancelar'])){
         header('Location: ../indexLoginLogoffTema5.php');
         exit;
     }
-    
-    if(isset($_REQUEST['registrarse'])){
-        header('Location: vRegistro.php');
-        exit;
-    }
 
-
-    require_once '../conf/confDBPDOClase.php'; // Archivo de 
+    require_once '../conf/confDBPDOClase.php'; // Archivo de configuracion para conexion de la base de datos.
     require_once '../core/231018libreriaValidacion.php'; // Libreria de validación de formularios.
-    
     $entradaOK=true;
-    
     // Array que almacena los errores del formulario.
-    
     $aErrores=[
-        'usuario'=>null,
-        'password'=>null
+        'usuario'=>'',
+        'password'=>''
     ];
-    
     // Array que almacena las respuestas correctas del formulario.
-    
     $aRespuestas=[
-        'usuario'=>null,
-        'password'=>null
+        'usuario'=>'',
+        'password'=>''
     ];
-    
     //Para cada campo del formulario: Validar entrada y actuar en consecuencia
     if (isset($_REQUEST["entrar"])) {//Código que se ejecuta cuando se envía el formulario
 
@@ -52,26 +29,19 @@
             if(!empty($valor)){ // Comprobar si el valor es válido
                 $entradaOK = false;
             } 
-        }
-        
+        } 
     } else {//Código que se ejecuta antes de rellenar el formulario
         $entradaOK = false;
     }
-    
+    // Tratamiento del formulario
     if($entradaOK){
         if(isset($_REQUEST['entrar'])){
             header('Location: programa.php');
             exit;
         }
-    }else{
-      
+    }else{ 
 ?>
-<!<!-- comment -->
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to edit this template
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -93,11 +63,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
                     <form name="formularioLogin" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" >
                         <div id="entradasLogin">
                             <label for="usuario">Usuario</label>
-                            <input type="text" name="usuario" class="entradaDatos" placeholder="Nombre de usuario"/>
+                            <input type="text" name="usuario" value="<?php echo $_REQUEST['usuario']??''?>" class="entradaDatos" placeholder="Nombre de usuario"/>
                             <span class="error" id="erroresFormulario"><?php echo $aErrores['usuario']??'' ?></span>
                             <br>
                             <label for="password">Contraseña</label>
-                            <input type="password" name="password" class="entradaDatos" placeholder="Contraseña"/>
+                            <input type="password" name="password" value="<?php echo $_REQUEST['password']??''?>" class="entradaDatos" placeholder="Contraseña"/>
                             <span class="error" id="erroresFormulario"><?php echo $aErrores['password']??'' ?></span>
                         </div>
                         <div id="botonesLogin">
