@@ -26,13 +26,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
     </head>
     <body>
         <header>
-            <h1>LOGIN LOGOFF TEMA 5</h1>
+            <p>LOGIN LOGOFF TEMA 5</p>
             <h2>INICIAR PRIVADO</h2>
             <form>
                 <input type="submit" name="cerrarSesion" value="Cerrar Sesion"/>
             </form>
         </header>
         <main>
+            <h4 id="h4InicioPublico">!Bienvenido al inicio privado¡</h4>
             <form>
                 <input type="submit" name="detalle" value="Detalle"/>
             </form>

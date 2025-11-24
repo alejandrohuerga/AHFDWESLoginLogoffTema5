@@ -22,10 +22,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Play:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+        
     </head>
     <body>
         <header>
-            <h1>LOGIN LOGOFF TEMA 5</h1>
+            <p>LOGIN LOGOFF TEMA 5</p>
             <h2>DETALLE</h2>
             <form>
                 <input type="submit" name="cerrarSesion" value="Cerrar Sesion"/>

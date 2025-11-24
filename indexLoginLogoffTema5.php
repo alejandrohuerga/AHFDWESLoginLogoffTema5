@@ -3,6 +3,19 @@
         header('Location: codigoPHP/login.php');
         exit;
     }
+    
+    if(empty($_COOKIE['idioma'])){
+        setcookie("idioma","ES",time()+3600);
+    }
+    
+    if(isset($REQUEST['idioma'])){
+        setcookie("idioma",$_REQUEST['idioma'],time()+3600); // Fecha de caducidad 1 hora.
+        header("Location: indexLoginLogoffTema5.php");
+        exit;
+    }
+    
+    
+    
 ?>
 <!DOCTYPE html>
 <!--
@@ -24,7 +37,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
             <h2 id="inicioPublico">INICIO PÚBLICO</h2>
             <form>
                 <input type="submit" name="iniciarSesion" value="INICIAR SESIÓN"/>
-            </form>
+                <button type="submit" name="idioma" value="ES">
+                    <img src="doc/images/reino-unido.png" alt="Ingles">
+                </button>
+                <button type="submit" name="idioma" value="EN">
+                    <img src="doc/images/spain.png" alt="Español">
+                </button>
+            </form> 
         </header>
         <main>
             <h4 id="h4InicioPublico">!Bienvenido al inicio público¡</h4>
