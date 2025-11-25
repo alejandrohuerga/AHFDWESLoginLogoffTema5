@@ -1,34 +1,20 @@
 <?php
-    $idiomaSeleccionado="ES";
     
+    // Si se hace click en el boton iniar sesion nos lleva a login.php
     if(isset($_REQUEST['iniciarSesion'])){
         header('Location: codigoPHP/login.php');
         exit;
     }
     
-    if (isset($_REQUEST['es'])) {
-        $idiomaSeleccionado="ES";
-        setcookie('idioma', $idiomaSeleccionado);
-        header("Location: ./indexLoginLogoffTema5.php");
-        exit;
-    }elseif (isset($_REQUEST['en'])) {
-        $idiomaSeleccionado="EN";
-        setcookie('idioma', $idiomaSeleccionado);
-        header("Location: ./indexLoginLogoffTema5.php");
-        exit;
-    }elseif (isset($_REQUEST['pr'])) {
-        $idiomaSeleccionado="PR";
-        setcookie('idioma', $idiomaSeleccionado);
-        header("Location: ./indexLoginLogoffTema5.php");
-        exit;
+    //Cookies para los idiomas. Si se hace clic en el boton de portugues, el mensaje de bienvenida será en portugues,
+    //Si se hace clic en el boton de ingles, el mensaje será en ingles y sino será en castellano.
+    if (isset($_REQUEST["pt"])) {
+        setcookie("idioma", "pt", time() + 3600);
+    }elseif (isset($_REQUEST["en"])) {
+        setcookie("idioma", "en", time() + 3600);
+    }else {
+        setcookie("idioma", "es", time() + 3600);
     }
-    
-    
-    if(!isset($_COOKIE["idioma"])) {
-        setcookie('idioma', $idiomaSeleccionado);
-    }
-    
-    
 ?>
 <!DOCTYPE html>
 <!--
@@ -50,13 +36,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
             <h2 id="inicioPublico">INICIO PÚBLICO</h2>
             <form>
                 <input type="submit" name="iniciarSesion" value="INICIAR SESIÓN"/>
-                <button type="submit" name="en" value="Ingles">
+                <button type="submit" name="en" value="en">
                     <img src="doc/images/reino-unido.png" alt="Ingles">
                 </button>
-                <button type="submit" name="es" value="Español">
+                <button type="submit" name="es" value="es">
                     <img src="doc/images/spain.png" alt="Español">
                 </button>
-                <button type="submit" name="pr" value="Portugues">
+                <button type="submit" name="pr" value="pt">
                     <img src="doc/images/portugal.png" alt="Portugues">
                 </button>
                 

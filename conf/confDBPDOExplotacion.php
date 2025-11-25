@@ -1,9 +1,7 @@
 <?php
-
-    //define('DNS', 'mysql:host=' . $_SERVER['SERVER_ADDR'] . ';dbname=DBVGDWESLoginLogoffTema5');
     define('DNS', 'mysql:host=localhost;dbname=DBAHFDWESLoginLogoffTema5;charset=utf8');
     define('USUARIODB', 'userAHFDWESLoginLogoffTema5');
-    define('PSWD', 'paso');
-
+    define('PSWD', 'Huerga2002');
 ?>
+
 

@@ -9,13 +9,13 @@
      // ENTORNO DE DESARROLLO CASA.
 
      // IP del servidor y Nombre de la base de datos.
-     define('DSN' , 'mysql:host=localhost;dbname=DBAHFDWESProyectoTema4');
+     define('DNS' , 'mysql:host=localhost;dbname=DBAHFDWESProyectoTema4');
      
      // Usuario con el cual nos conectamos
-     define('USER' , 'userAHFDWESLoginLogoffTema5');
+     define('USUARIODB' , 'userAHFDWESLoginLogoffTema5');
      
      // Password para conectarnos a la base de datos.
      
-     define('PASSWD' , 'paso');
+     define('PSWD' , 'paso');
 ?>
 

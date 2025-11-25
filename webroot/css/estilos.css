@@ -303,3 +303,40 @@ footer img:hover{
 #login, #registro{
     margin-right: 50%;
 }
+
+/* ////////////////////////////////////////////////////// */
+
+/* Solo para detalle.php */
+main.detalle {
+    height: auto;        /* Permite crecer según el contenido */
+    padding: 20px;
+    display: block;      /* Evita el centrado flex que rompe las tablas */
+}
+
+main.detalle article.articleSG {
+    margin-bottom: 30px;
+    width: 90%;
+    overflow-x: auto;    /* Scroll si la tabla es ancha */
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    padding: 10px;
+}
+
+main.detalle table.tableSG {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+    font-family: Play, sans-serif;
+    font-size: 14px;
+}
+
+main.detalle table.tableSG th,
+main.detalle table.tableSG td {
+    border: 1px solid white;
+    padding: 6px 10px;
+    text-align: left;
+}
+
+main.detalle table.tableSG th {
+    background-color: rgba(255,255,255,0.2);
+}

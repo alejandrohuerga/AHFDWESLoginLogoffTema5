@@ -1,5 +1,12 @@
 <?php
 
+    session_start();
+    
+    if (!isset($_SESSION["usuario"])) {
+        header("location: ../indexLoginLogoffTema5.php");
+    exit;
+    }
+
     if(isset($_REQUEST['cerrarSesion'])){
         header('Location: ../indexLoginLogoffTema5.php');
         exit;
@@ -33,7 +40,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
             </form>
         </header>
         <main>
-            <h4 id="h4InicioPublico">!Bienvenido al inicio privado¡</h4>
+            <?php 
+                if($_COOKIE["idioma"]==="es"){
+                    echo "<h2>BIENVENIDO A TU AREA PRIVADA</h2>";
+                }elseif($_COOKIE["idioma"]==="en"){
+                    echo "<h2>WELCOME TO YOUR PRIVATE AREA </h2>";
+                }elseif($_COOKIE["idioma"]==="pr"){
+                    echo "<h2>BEM-VINDO A UMA RESIDÊNCIA PARTICULAR!</h2>";
+                }?>
             <form>
                 <input type="submit" name="detalle" value="Detalle"/>
             </form>
