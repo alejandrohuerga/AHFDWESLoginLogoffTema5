@@ -42,7 +42,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
                 <button type="submit" name="es" value="es">
                     <img src="doc/images/spain.png" alt="Español">
                 </button>
-                <button type="submit" name="pr" value="pt">
+                <button type="submit" name="pt" value="pt">
                     <img src="doc/images/portugal.png" alt="Portugues">
                 </button>
                 

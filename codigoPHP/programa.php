@@ -45,7 +45,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
                     echo "<h2>BIENVENIDO A TU AREA PRIVADA</h2>";
                 }elseif($_COOKIE["idioma"]==="en"){
                     echo "<h2>WELCOME TO YOUR PRIVATE AREA </h2>";
-                }elseif($_COOKIE["idioma"]==="pr"){
+                }elseif($_COOKIE["idioma"]==="pt"){
                     echo "<h2>BEM-VINDO A UMA RESIDÊNCIA PARTICULAR!</h2>";
                 }?>
             <form>
