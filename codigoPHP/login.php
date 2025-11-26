@@ -1,7 +1,7 @@
 <?php
 session_start(); // Iniciamos la sesión desde el inicio
 
-require_once '../conf/confDBPDOExplotacion.php'; // Configuración de la DB
+require_once '../conf/confDBPDOClase.php'; // Configuración de la DB
 require_once '../core/231018libreriaValidacion.php'; // Librería de validación
 
 // Cancelar: volver al index

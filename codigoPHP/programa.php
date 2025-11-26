@@ -1,17 +1,22 @@
 <?php
-
+    //iniciamos la sesión
     session_start();
     
     if (!isset($_SESSION["usuario"])) {
         header("location: ../indexLoginLogoffTema5.php");
     exit;
     }
-
+    
+    //Comprobamos que hemos pulsado en salir borramos todo lo que hay en la sesion y la destruimos
     if(isset($_REQUEST['cerrarSesion'])){
+        $_SESSION['userAHFDWESLoginLogoffTema5']=null;
+        $_SESSION['ultimaConexionAnterior']=null;
+        session_destroy(); // Destruye todos los datos de la sesión.
         header('Location: ../indexLoginLogoffTema5.php');
         exit;
     }
     
+    //Comprobamos que hemos pulsado en detalle y dirigimos a detalle.php
     if(isset($_REQUEST['detalle'])){
         header('Location: detalle.php');
         exit;
@@ -42,12 +47,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
         <main>
             <?php 
                 if($_COOKIE["idioma"]==="es"){
-                    echo "<h2>BIENVENIDO A TU AREA PRIVADA</h2>";
+                    echo "<h2>Bienvenido $_SESSION[descripcion]</h2>";
                 }elseif($_COOKIE["idioma"]==="en"){
-                    echo "<h2>WELCOME TO YOUR PRIVATE AREA </h2>";
+                    echo "<h2>Welcome $_SESSION[descripcion]! </h2>";
                 }elseif($_COOKIE["idioma"]==="pt"){
-                    echo "<h2>BEM-VINDO A UMA RESIDÊNCIA PARTICULAR!</h2>";
-                }?>
+                    echo "<h2>Bem-vindo $_SESSION[descripcion]!</h2>";
+                }
+            ?>
             <form>
                 <input type="submit" name="detalle" value="Detalle"/>
             </form>
