@@ -17,18 +17,6 @@
         header('Location: ./indexLoginLogoffTema5.php');
         exit;
     }
-    
-    //Cookies para los idiomas. Si se hace clic en el boton de portugues, el mensaje de bienvenida será en portugues,
-    //Si se hace clic en el boton de ingles, el mensaje será en ingles y sino será en castellano.
-    /*
-    if (isset($_REQUEST["pt"])) {
-        setcookie("idioma", "pt", time() + 3600);
-    }elseif (isset($_REQUEST["en"])) {
-        setcookie("idioma", "en", time() + 3600);
-    }else {
-        setcookie("idioma", "es", time() + 3600);
-    }
-    */
 ?>
 <!DOCTYPE html>
 <!--
