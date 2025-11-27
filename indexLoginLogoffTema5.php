@@ -9,10 +9,10 @@
     //Cookies para los idiomas. Si se hace clic en el boton de portugues, el mensaje de bienvenida será en portugues,
     //Si se hace clic en el boton de ingles, el mensaje será en ingles y sino será en castellano.
     if (isset($_REQUEST["pt"])) {
-        setcookie("idioma", "pt", time() + 3600);
+        setcookie("idioma", "pt", time()+3600); //Duracion una hora.
     }elseif (isset($_REQUEST["en"])) {
         setcookie("idioma", "en", time() + 3600);
-    }else {
+    }else if(isset($_REQUEST["es"])) {
         setcookie("idioma", "es", time() + 3600);
     }
 ?>
@@ -50,10 +50,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
         </header>
         <main>
             <?php
-                if($_COOKIE["idioma"]=="EN"){
+                if($_COOKIE["idioma"]=="en"){
                     echo '<h4 id="h4InicioPublico">Welcome to the public launch!</h4>';
                     echo'<p id="pInicioPublico">From this page you can log in at the top right.</p>';
-                }elseif ($_COOKIE["idioma"]=="PR"){
+                }elseif ($_COOKIE["idioma"]=="pt"){
                     echo '<h4 id="h4InicioPublico">Bem-vindo à área pública.</h4>';
                     echo '<p id="pInicioPublico">Nesta página, pode fazer login no canto superior direito.</p>';
                 }else{

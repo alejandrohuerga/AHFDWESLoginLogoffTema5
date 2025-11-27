@@ -1,14 +1,13 @@
 <?php
-    session_start(); // Iniciamos la sesión desde el inicio
-
-    require_once '../conf/confDBPDOClase.php'; // Configuración de la DB
-    require_once '../core/231018libreriaValidacion.php'; // Librería de validación
-
     // Cancelar: volver al index
     if(isset($_REQUEST['cancelar'])){
         header('Location: ../indexLoginLogoffTema5.php');
         exit;
     }
+    
+    session_start(); // Iniciamos la sesión desde el inicio
+    require_once '../conf/confDBPDOClase.php'; // Configuración de la DB
+    require_once '../core/231018libreriaValidacion.php'; // Librería de validación
 
     $entradaOK = true;
     $aErrores = ['usuario'=>'','password'=>''];
@@ -48,11 +47,25 @@
                 $aErrores['usuario'] = "Usuario o contraseña incorrectos";
                 $entradaOK = false;
             } else {
-                // Guardamos datos en la sesión
+                
+                $oFechaActual=new DateTime();
+                session_start();
+                //Se recogen estos datos de la sesión en un array $aDatosSession
+                $aDatosSesion = [
+                    'usuario' => $usuarioBD['T01_CodUsuario'],
+                    'descripcion' => $usuarioBD['T01_DescUsuario'],
+                    'FechaHoraUltimaConexionAnterior'=>$usuarioBD['T01_FechaHoraUltimaConexion'],
+                    'ultimaConexion' => $oFechaActual,
+                    'numConexiones' => $usuarioBD['T01_NumConexiones']
+                ];
+                
+                
+                /*
                 $_SESSION['usuario'] = $usuarioBD['T01_CodUsuario'];
                 $_SESSION['descripcion'] = $usuarioBD['T01_DescUsuario'];
                 $_SESSION['ultimaConexion'] = $usuarioBD['T01_FechaHoraUltimaConexion'];
-                $_SESSION['numConexiones'] = $usuarioBD['T01_NumConexiones'];
+                $_SESSION['numConexiones'] = $usuarioBD['T01_NumConexiones']; 
+                */
                 // Actualizamos último acceso y contador
                 $sqlUpdate = "UPDATE T_01Usuario SET 
                                 T01_FechaHoraUltimaConexion = NOW(),

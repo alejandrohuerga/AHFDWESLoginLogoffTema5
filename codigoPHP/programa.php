@@ -2,15 +2,14 @@
     //iniciamos la sesión
     session_start();
     
-    if (!isset($_SESSION["usuario"])) {
+    if (!isset($aDatosSesion)) {
         header("location: ../indexLoginLogoffTema5.php");
     exit;
     }
     
     //Comprobamos que hemos pulsado en salir borramos todo lo que hay en la sesion y la destruimos
     if(isset($_REQUEST['cerrarSesion'])){
-        $_SESSION['userAHFDWESLoginLogoffTema5']=null;
-        $_SESSION['ultimaConexionAnterior']=null;
+        // Destruye la sesión
         session_destroy(); // Destruye todos los datos de la sesión.
         header('Location: ../indexLoginLogoffTema5.php');
         exit;
