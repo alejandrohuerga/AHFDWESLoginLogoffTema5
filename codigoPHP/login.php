@@ -1,83 +1,74 @@
 <?php
-session_start(); // Iniciamos la sesión desde el inicio
+    session_start(); // Iniciamos la sesión desde el inicio
 
-require_once '../conf/confDBPDOClase.php'; // Configuración de la DB
-require_once '../core/231018libreriaValidacion.php'; // Librería de validación
+    require_once '../conf/confDBPDOClase.php'; // Configuración de la DB
+    require_once '../core/231018libreriaValidacion.php'; // Librería de validación
 
-// Cancelar: volver al index
-if(isset($_REQUEST['cancelar'])){
-    header('Location: ../indexLoginLogoffTema5.php');
-    exit;
-}
-
-$entradaOK = true;
-$aErrores = ['usuario'=>'','password'=>''];
-
-// Validación al enviar el formulario
-if (isset($_REQUEST["entrar"])) {
-
-    // Validamos los datos del formulario
-    $aErrores['usuario'] = validacionFormularios::comprobarAlfabetico($_REQUEST['usuario'],100,0,1);
-    $aErrores['password'] = validacionFormularios::comprobarAlfabetico($_REQUEST['password'],255,1,1);
-
-    foreach($aErrores as $valor){
-        if(!empty($valor)){
-            $entradaOK = false;
-        }
-    }
-
-} else {
-    $entradaOK = false;
-}
-
-// Tratamiento del formulario
-if($entradaOK){
-
-    try {
-        $miDB = new PDO(DNS, USUARIODB, PSWD);
-        $miDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        // Consulta para comprobar usuario y contraseña
-        $sql = "SELECT T01_CodUsuario, T01_Password, T01_DescUsuario, T01_FechaHoraUltimaConexion, T01_NumConexiones
-                FROM T_01Usuario 
-                WHERE T01_CodUsuario = :usuario AND T01_Password = sha2(:passwd,256)";
-        $consulta = $miDB->prepare($sql);
-        $consulta->execute([
-            ':usuario' => $_REQUEST['usuario'],
-            ':passwd' => $_REQUEST['usuario'].$_REQUEST['password'] // como tu compañera concatena usuario+password
-        ]);
-
-        $usuarioBD = $consulta->fetch(PDO::FETCH_ASSOC);
-
-        if(!$usuarioBD){
-            $aErrores['usuario'] = "Usuario o contraseña incorrectos";
-            $entradaOK = false;
-        } else {
-            // Guardamos datos en la sesión
-            $_SESSION['usuario'] = $usuarioBD['T01_CodUsuario'];
-            $_SESSION['descripcion'] = $usuarioBD['T01_DescUsuario'];
-            $_SESSION['ultimaConexion'] = $usuarioBD['T01_FechaHoraUltimaConexion'];
-            $_SESSION['numConexiones'] = $usuarioBD['T01_NumConexiones'];
-
-            // Actualizamos último acceso y contador
-            $sqlUpdate = "UPDATE T_01Usuario SET 
-                            T01_FechaHoraUltimaConexion = NOW(),
-                            T01_NumConexiones = T01_NumConexiones + 1
-                          WHERE T01_CodUsuario = :usuario";
-            $consulta2 = $miDB->prepare($sqlUpdate);
-            $consulta2->execute([':usuario' => $_REQUEST['usuario']]);
-
-            // Redirigir a programa.php
-            header("Location: programa.php");
-            exit;
-        }
-
-    } catch (PDOException $ex){
-        echo "Error: ".$ex->getMessage();
+    // Cancelar: volver al index
+    if(isset($_REQUEST['cancelar'])){
+        header('Location: ../indexLoginLogoffTema5.php');
         exit;
     }
 
-}
+    $entradaOK = true;
+    $aErrores = ['usuario'=>'','password'=>''];
+
+    // Validación al enviar el formulario
+    if (isset($_REQUEST["entrar"])) {
+        // Validamos los datos del formulario
+        $aErrores['usuario'] = validacionFormularios::comprobarAlfabetico($_REQUEST['usuario'],100,0,1);
+        $aErrores['password'] = validacionFormularios::comprobarAlfabetico($_REQUEST['password'],255,1,1);
+
+        foreach($aErrores as $valor){
+            if(!empty($valor)){
+                $entradaOK = false;
+            }
+        }
+    } else {
+        $entradaOK = false;
+    }
+    // Tratamiento del formulario
+    if($entradaOK){
+        try {
+            $miDB = new PDO(DNS, USUARIODB, PSWD);
+            $miDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            // Consulta para comprobar usuario y contraseña
+            $sql = "SELECT T01_CodUsuario, T01_Password, T01_DescUsuario, T01_FechaHoraUltimaConexion, T01_NumConexiones
+                    FROM T_01Usuario 
+                    WHERE T01_CodUsuario = :usuario AND T01_Password = sha2(:passwd,256)";
+            $consulta = $miDB->prepare($sql);
+            $consulta->execute([
+                ':usuario' => $_REQUEST['usuario'],
+                ':passwd' => $_REQUEST['usuario'].$_REQUEST['password'] 
+            ]);
+
+            $usuarioBD = $consulta->fetch(PDO::FETCH_ASSOC);
+
+            if(!$usuarioBD){
+                $aErrores['usuario'] = "Usuario o contraseña incorrectos";
+                $entradaOK = false;
+            } else {
+                // Guardamos datos en la sesión
+                $_SESSION['usuario'] = $usuarioBD['T01_CodUsuario'];
+                $_SESSION['descripcion'] = $usuarioBD['T01_DescUsuario'];
+                $_SESSION['ultimaConexion'] = $usuarioBD['T01_FechaHoraUltimaConexion'];
+                $_SESSION['numConexiones'] = $usuarioBD['T01_NumConexiones'];
+                // Actualizamos último acceso y contador
+                $sqlUpdate = "UPDATE T_01Usuario SET 
+                                T01_FechaHoraUltimaConexion = NOW(),
+                                T01_NumConexiones = T01_NumConexiones + 1
+                                WHERE T01_CodUsuario = :usuario";
+                $consulta2 = $miDB->prepare($sqlUpdate);
+                $consulta2->execute([':usuario' => $_REQUEST['usuario']]);
+                // Redirigir a programa.php
+                header("Location: programa.php");
+                exit;
+            }
+        } catch (PDOException $ex){
+            echo "Error: ".$ex->getMessage();
+            exit;
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html>

@@ -47,11 +47,54 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
         <main>
             <?php 
                 if($_COOKIE["idioma"]==="es"){
+                    //Creamos un objeto DateTime para poder utilizar la fecha y la hora de la ultima conexión.
+                    $fechaHora=new DateTime($_SESSION['ultimaConexion'], new DateTimeZone('Europe/Madrid'));
+                    $hora=$fechaHora->format('H:i');
+                    //Como está instalada la extensión de internacionalización intl en el seridor y en plesk se va a utiliza IntlDAteFormater
+                    //Utilizamos timestamp.
+                    $timestamp = $fechaHora->getTimestamp();
+                    $formatoFecha = new IntlDateFormatter('es_ES', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
+                    $fecha = $formatoFecha->format($timestamp);
                     echo "<h2>Bienvenido $_SESSION[descripcion]</h2>";
+                    if($_SESSION['numConexiones']==0){
+                        echo "<h2>¡Esta es tu primera conexión!</h2>";
+                    }else{
+                        echo "<h2>Esta es la $_SESSION[numConexiones] vez que se conecta</h2>";
+                        echo "<h2>Usted se conectó por última vez el <br> </h2>";
+                        echo $fecha . " a las " . $hora;
+                    }  
                 }elseif($_COOKIE["idioma"]==="en"){
+                    //Creamos un objeto DateTime para poder utilizar la fecha y la hora de la ultima conexión.
+                    $fechaHora=new DateTime($_SESSION['ultimaConexion'], new DateTimeZone('Europe/London'));
+                    //Convertimos a fecha y hora de Londres.
+                    $fechaHora->setTimezone(new DateTimeZone('Europe/London'));
+                    $hora=$fechaHora->format('H:i');
+                    $timestamp = $fechaHora->getTimestamp();
+                    $formatoFecha = new IntlDateFormatter('en_GB', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
+                    $fecha = $formatoFecha->format($timestamp);
                     echo "<h2>Welcome $_SESSION[descripcion]! </h2>";
+                    if($_SESSION['numConexiones']==0){
+                        echo "<h2>¡This is your first conection!</h2>";
+                    }else{
+                        echo "<h2>This is the $_SESSION[numConexiones] time he has connected</h2>";
+                        echo "<h2> You last connected on <br> </h2>";
+                        echo $fecha . " at " . $hora;
+                    }  
                 }elseif($_COOKIE["idioma"]==="pt"){
-                    echo "<h2>Bem-vindo $_SESSION[descripcion]!</h2>";
+                    //Creamos un objeto DateTime para poder utilizar la fecha y la hora de la ultima conexión.
+                    $fechaHora=new DateTime($_SESSION['ultimaConexion'], new DateTimeZone('Europe/Lisbon'));
+                    $fechaHora->setTimezone(new DateTimeZone('Europe/Lisbon'));
+                    $hora=$fechaHora->format('H:i');
+                    $timestamp = $fechaHora->getTimestamp();
+                    $formatoFecha = new IntlDateFormatter('pt_PT', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
+                    $fecha = $formatoFecha->format($timestamp);
+                    if($_SESSION['numConexiones']==0){
+                        echo "<h2>Bem-vindo $_SESSION[descripcion]!</h2>";
+                    }else{
+                        echo "<h2>Esta é a $_SESSION[descripcion] que ele se conecta.</h2>";
+                        echo "<h2>Você fez login pela última vez em <br> </h2>";
+                        echo "<h2> $fecha  at   $hora </h2>";
+                    }  
                 }
             ?>
             <form>
