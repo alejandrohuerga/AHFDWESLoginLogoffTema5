@@ -1,21 +1,19 @@
 <?php
-    //iniciamos la sesión
+
     session_start();
     
-    if (!isset($aDatosSesion)) {
+    if (!isset($_SESSION['usuarioDAW202AppLoginLogoffTema5'])) {
         header("location: ../indexLoginLogoffTema5.php");
-    exit;
+        exit;
     }
-    
-    //Comprobamos que hemos pulsado en salir borramos todo lo que hay en la sesion y la destruimos
+
     if(isset($_REQUEST['cerrarSesion'])){
-        // Destruye la sesión
-        session_destroy(); // Destruye todos los datos de la sesión.
+        //Destruye la sesión
+        session_destroy();
         header('Location: ../indexLoginLogoffTema5.php');
         exit;
     }
     
-    //Comprobamos que hemos pulsado en detalle y dirigimos a detalle.php
     if(isset($_REQUEST['detalle'])){
         header('Location: detalle.php');
         exit;
@@ -45,6 +43,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
         </header>
         <main>
             <?php 
+                $usuarioEnCurso = $_SESSION['usuarioDAW202AppLoginLogoffTema5'];
+                $fechaUltimaConexion = new DateTime($usuarioEnCurso['FechaHoraUltimaConexionAnterior']);
                 if($_COOKIE["idioma"]==="es"){
                     //Creamos un objeto DateTime para poder utilizar la fecha y la hora de la ultima conexión.
                     $fechaHora=new DateTime($_SESSION['ultimaConexion'], new DateTimeZone('Europe/Madrid'));
@@ -62,7 +62,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
                         echo "<h2>Usted se conectó por última vez el <br> </h2>";
                         echo $fecha . " a las " . $hora;
                     }  
-                }elseif($_COOKIE["idioma"]==="en"){
+                }
+                if($_COOKIE["idioma"]==="en"){
                     //Creamos un objeto DateTime para poder utilizar la fecha y la hora de la ultima conexión.
                     $fechaHora=new DateTime($_SESSION['ultimaConexion'], new DateTimeZone('Europe/London'));
                     //Convertimos a fecha y hora de Londres.
@@ -79,7 +80,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
                         echo "<h2> You last connected on <br> </h2>";
                         echo $fecha . " at " . $hora;
                     }  
-                }elseif($_COOKIE["idioma"]==="pt"){
+                }
+                if($_COOKIE["idioma"]==="pt"){
                     //Creamos un objeto DateTime para poder utilizar la fecha y la hora de la ultima conexión.
                     $fechaHora=new DateTime($_SESSION['ultimaConexion'], new DateTimeZone('Europe/Lisbon'));
                     $fechaHora->setTimezone(new DateTimeZone('Europe/Lisbon'));

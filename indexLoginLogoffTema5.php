@@ -6,15 +6,29 @@
         exit;
     }
     
+    if (!isset($_COOKIE['idioma'])) {
+        setcookie("idioma", "ES", time()+604.800); // caducidad 1 semana
+        header('Location: ./indexLoginLogoffTema5.php');
+        exit;
+    }
+    
+    if (isset($_REQUEST['idioma'])) {
+        setcookie("idioma", $_REQUEST['idioma'], time()+604.800); // caducidad 1 semana
+        header('Location: ./indexLoginLogoffTema5.php');
+        exit;
+    }
+    
     //Cookies para los idiomas. Si se hace clic en el boton de portugues, el mensaje de bienvenida será en portugues,
     //Si se hace clic en el boton de ingles, el mensaje será en ingles y sino será en castellano.
+    /*
     if (isset($_REQUEST["pt"])) {
-        setcookie("idioma", "pt", time()+3600); //Duracion una hora.
+        setcookie("idioma", "pt", time() + 3600);
     }elseif (isset($_REQUEST["en"])) {
         setcookie("idioma", "en", time() + 3600);
-    }else if(isset($_REQUEST["es"])) {
+    }else {
         setcookie("idioma", "es", time() + 3600);
     }
+    */
 ?>
 <!DOCTYPE html>
 <!--
@@ -36,13 +50,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
             <h2 id="inicioPublico">INICIO PÚBLICO</h2>
             <form>
                 <input type="submit" name="iniciarSesion" value="INICIAR SESIÓN"/>
-                <button type="submit" name="en" value="en">
+                <button type="submit" name="idioma" value="en">
                     <img src="doc/images/reino-unido.png" alt="Ingles">
                 </button>
-                <button type="submit" name="es" value="es">
+                <button type="submit" name="idioma" value="es">
                     <img src="doc/images/spain.png" alt="Español">
                 </button>
-                <button type="submit" name="pt" value="pt">
+                <button type="submit" name="idioma" value="pt">
                     <img src="doc/images/portugal.png" alt="Portugues">
                 </button>
                 
@@ -56,7 +70,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
                 }elseif ($_COOKIE["idioma"]=="pt"){
                     echo '<h4 id="h4InicioPublico">Bem-vindo à área pública.</h4>';
                     echo '<p id="pInicioPublico">Nesta página, pode fazer login no canto superior direito.</p>';
-                }else{
+                }else if($_COOKIE["idioma"]=="es"){
                     echo '<h4 id="h4InicioPublico">!Bienvenido al inicio público¡</h4>';
                     echo '<p id="pInicioPublico">Desde esta página puedes iniciar sesión arriba a la derecha.</p>';
                 }
