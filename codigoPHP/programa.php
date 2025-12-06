@@ -54,7 +54,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
                     $timestamp = $fechaHora->getTimestamp();
                     $formatoFecha = new IntlDateFormatter('es_ES', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
                     $fecha = $formatoFecha->format($timestamp);
-                    echo "<h2>Bienvenido" .$_SESSION['usuarioDAW202AppLoginLogoffTema5']['DescUsuario']."</h2>";
+                    echo "<h2>Bienvenido " .$_SESSION['usuarioDAW202AppLoginLogoffTema5']['DescUsuario']."</h2>";
                     if($_SESSION['usuarioDAW202AppLoginLogoffTema5']['NumConexiones']==0){
                         echo "<h2>¡Esta es tu primera conexión!</h2>";
                     }else{

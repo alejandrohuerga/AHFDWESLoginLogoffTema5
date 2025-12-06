@@ -47,7 +47,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
                 <button type="submit" name="idioma" value="pt">
                     <img src="doc/images/portugal.png" alt="Portugues">
                 </button>
-                
             </form> 
         </header>
         <main>
